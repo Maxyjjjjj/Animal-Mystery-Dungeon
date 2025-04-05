@@ -2,6 +2,11 @@ from animals import *
 
 class PersonalityQuiz:
     def __init__(self):
+
+        """
+        Initialize the personality quiz with a list of questions and answers.
+        """
+        
         self.questions = [
             {
                 "question": "You see someone being bullied. What do you do?",
