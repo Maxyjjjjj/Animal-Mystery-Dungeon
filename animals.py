@@ -1300,5 +1300,18 @@ animals = {
             weight=Rank.B,
             has_arms=False,
             locomotion=Locomotion.SEMIAQUATIC
+        ),
+        "Diplodocus": Animal(
+            name="Diplodocus",
+            species="Diplodocus carnegii",
+            diet=Diet.HERBIVORE,
+            intelligence=Rank.B,
+            size=Size.XXL,
+            has_wings=False,
+            speed=Rank.B,
+            damage=Rank.S,
+            weight=Rank.S,
+            has_arms=False,
+            locomotion=Locomotion.TERRESTRIAL
         )
     }

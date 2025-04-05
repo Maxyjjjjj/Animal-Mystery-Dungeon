@@ -1,5 +1,6 @@
 import pygame
 import random
+import numpy as np
 import sys
 from enum import Enum, auto
 from personality_quiz import PersonalityQuiz
@@ -76,6 +77,139 @@ class DungeonGenerator:
         # Generate rooms based on difficulty and theme
         # Connect rooms with doors/passages
         return rooms
+
+def generate_procedural_dungeon(width, height, complexity=0.75, density=0.5):
+    """Generate a random dungeon with rooms and corridors"""
+    # Initialize with walls
+    grid = np.ones((height, width), dtype=int)
+    
+    # Make a grid with random walls
+    for i in range(int(complexity * 5000)):
+        x = random.randint(1, width-2)
+        y = random.randint(1, height-2)
+        grid[y][x] = 0
+        
+        # Connect with nearby open spaces
+        for _ in range(int(density * 4)):
+            nx, ny = x + random.randint(-1, 1), y + random.randint(-1, 1)
+            if 0 < nx < width-1 and 0 < ny < height-1:
+                grid[ny][nx] = 0
+                
+    return grid
+
+class CombatSystem:
+    def __init__(self):
+        self.turn_order = []
+    
+    def calculate_damage(self, attacker, defender, move):
+        """Calculate damage based on stats and move type"""
+        base_damage = move.power
+        attack_stat = attacker.damage.value
+        defense_stat = defender.size.value
+        
+        damage = base_damage * attack_stat / defense_stat
+        return max(1, int(damage))
+    
+    def execute_turn(self, animals):
+        """Execute a single turn of combat for all animals"""
+        # Sort by speed using the Rank enum value
+        self.turn_order = sorted(animals, key=lambda x: x.speed.value, reverse=True)
+        
+        for animal in self.turn_order:
+            if animal.is_player:
+                # Player chooses action
+                return "player_turn"
+            else:
+                # AI chooses action
+                self.execute_ai_turn(animal)
+    def execute_ai_turn(self, animal):
+        # AI chooses action based on its AI behavior
+        pass
+    def execute_player_turn(self, player):
+        # Player chooses action
+        pass
+    
+class AnimalTeam:
+    def __init__(self, leader):
+        self.leader = leader  # Player's character
+        self.members = [leader]
+        self.max_size = 4
+    
+    def add_member(self, animal):
+        if len(self.members) < self.max_size:
+            self.members.append(animal)
+            return True
+        return False
+    
+    def remove_member(self, animal):
+        if animal != self.leader and animal in self.members:
+            self.members.remove(animal)
+            return True
+        return False
+
+class ExperienceSystem:
+    def __init__(self):
+        self.level_thresholds = [0, 100, 300, 600, 1000, 1500, 2100, 2800, 3600, 4500]  # Example thresholds
+    
+    def gain_experience(self, animal, amount):
+        """Add experience to an animal and handle level ups"""
+        animal.experience += amount
+        
+        # Check for level up
+        if animal.level < len(self.level_thresholds) - 1:
+            if animal.experience >= self.level_thresholds[animal.level + 1]:
+                self.level_up(animal)
+    
+    def level_up(self, animal):
+        """Handle level up logic"""
+        animal.level += 1
+        
+        # Increase stats
+        animal.max_health += random.randint(3, 7)
+        animal.attack += random.randint(1, 3)
+        animal.defense += random.randint(1, 3)
+        animal.speed += random.randint(1, 2)
+        
+        # Learn new moves
+        self.check_new_moves(animal)
+
+class Move:
+    def __init__(self, name, type, power, accuracy, pp):
+        self.name = name
+        self.type = type
+        self.power = power
+        self.accuracy = accuracy
+        self.pp = pp
+        self.pp_used = 0
+
+    def use(self):
+        """Reduce PP and return True if move is still usable"""
+        self.pp_used += 1
+        return self.pp_used < self.pp
+    
+    def reset_pp(self):
+        """Reset PP used"""
+        self.pp_used = 0
+    
+    def is_usable(self):
+        """Check if move is still usable"""
+        return self.pp_used < self.pp
+
+class TerrainType(Enum):
+    FLOOR = 0
+    WALL = 1
+    WATER = 2
+    LAVA = 3
+    MUD = 4
+    ICE = 5
+    GRASS = 6
+
+class Terrain:
+    def __init__(self, type, movement_cost, damage=0):
+        self.type = type
+        self.movement_cost = movement_cost
+        self.damage = damage  # Damage per turn if standing on this terrain
+
 
 
 class Diet(Enum):
