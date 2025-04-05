@@ -46,6 +46,38 @@ class Dungeon:
             y = random.randint(1, self.height-2)
             self.grid[y][x] = 1
 
+class DungeonRoom:
+    def __init__(self, room_type, width, height):
+        self.room_type = room_type  # "normal", "treasure", "boss", etc.
+        self.width = width
+        self.height = height
+        self.obstacles = []
+        self.enemies = []
+        self.items = []
+        self.doors = []
+        
+    def add_obstacle(self, obstacle, x, y):
+        obstacle.x = x
+        obstacle.y = y
+        self.obstacles.append(obstacle)
+        
+    def add_enemy(self, enemy, x, y):
+        enemy.x = x
+        enemy.y = y
+        self.enemies.append(enemy)
+
+class DungeonGenerator:
+    def __init__(self, difficulty, theme):
+        self.difficulty = difficulty
+        self.theme = theme  # "forest", "cave", "underwater", etc.
+        
+    def generate_dungeon(self, num_rooms):
+        rooms = []
+        # Generate rooms based on difficulty and theme
+        # Connect rooms with doors/passages
+        return rooms
+
+
 class Diet(Enum):
     CARNIVORE = auto()
     HERBIVORE = auto()
@@ -222,6 +254,34 @@ class Obstacle:
 def create_obstacles():
     from obstacles import obstacles
     return obstacles
+
+class WeatherSystem:
+    def __init__(self):
+        self.current_weather = "clear"
+        self.weather_effects = {
+            "clear": {},
+            "rain": {"water_multiplier": 1.2, "visibility": 0.8},
+            "fog": {"visibility": 0.5},
+            "snow": {"movement_speed": 0.8}
+        }
+        
+    def change_weather(self, new_weather):
+        if new_weather in self.weather_effects:
+            self.current_weather = new_weather
+            
+    def apply_effects(self, game_world):
+        effects = self.weather_effects.get(self.current_weather, {})
+        # Apply water multiplier
+        if "water_multiplier" in effects:
+            game_world.water_multiplier = effects["water_multiplier"]
+
+        # Apply visibility
+        if "visibility" in effects:
+            game_world.visibility = effects["visibility"]
+        # Apply movement speed
+        if "movement_speed" in effects:
+            game_world.movement_speed = effects["movement_speed"]
+        
 
 class Game:
     def __init__(self):
