@@ -1313,5 +1313,31 @@ animals = {
             weight=Rank.S,
             has_arms=False,
             locomotion=Locomotion.TERRESTRIAL
+        ),
+        "Tasmanian Devil": Animal(
+            name="Tasmanian Devil",
+            species="Sarcophilus harrisii",
+            diet=Diet.CARNIVORE,
+            intelligence=Rank.B,
+            size=Size.M,
+            has_wings=False,
+            speed=Rank.B,
+            damage=Rank.S,
+            weight=Rank.S,
+            has_arms=False,
+            locomotion=Locomotion.TERRESTRIAL
+        ),
+        "Xenops": Animal(
+            name="Xenops",
+            species="Xenops rutilans",
+            diet=Diet.OMNIVORE,
+            intelligence=Rank.B,
+            size=Size.S,
+            has_wings=True,
+            speed=Rank.A,
+            damage=Rank.C,
+            weight=Rank.C,
+            has_arms=False,
+            locomotion=Locomotion.TERRESTRIAL
         )
     }

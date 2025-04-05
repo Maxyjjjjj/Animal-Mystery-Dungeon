@@ -15,8 +15,19 @@ class MoveEffect:
         self.duration = duration  # How many turns it lasts
         self.magnitude = magnitude  # How strong the effect is
 
+class MoveEffectType(Enum):
+    SLOW = auto()
+    POISON = auto()
+    FREEZE = auto()
+    CONFUSE = auto()
+    SLEEP = auto()
+    BLIND = auto()
+    STUN = auto()
+    WHACKED = auto()
+    DETECTED = auto()
+
 class Move:
-    def __init__(self, name, description, category, power, accuracy, pp, effect=None, restricted_to=None):
+    def __init__(self, name, description, category, power, accuracy, pp, effect=None):
         self.name = name
         self.description = description
         self.category = category
@@ -25,7 +36,6 @@ class Move:
         self.pp = pp
         self.pp_used = 0
         self.effect = effect
-        self.restricted_to = restricted_to
 
     def use(self, user, target):
         """
@@ -57,14 +67,33 @@ moves = {
     "scratch": Move("Scratch", "Scratch a target", MoveCategory.PHYSICAL, 40, 100, 35),
     "growl": Move("Growl", "Growl loudly", MoveCategory.STATUS, 0, 100, 40),
     "tail_whip": Move("Tail Whip", "Whip a target with your tail", MoveCategory.STATUS, 0, 100, 30),
-    "pound": Move("Pound", "Hit a target with your knuckles", MoveCategory.PHYSICAL, 40, 100, 35, restricted_to=lambda animal: animal.has_arms),
+    "pound": Move("Pound", "Hit a target with your knuckles", MoveCategory.PHYSICAL, 40, 100, 35),
     "bite": Move("Bite", "Bite a target", MoveCategory.PHYSICAL, 60, 100, 25),
     "pounce": Move("Pounce", "Pounce at a target", MoveCategory.PHYSICAL, 35, 95, 30),
     "leer": Move("Leer", "Leer at a target", MoveCategory.STATUS, 0, 100, 30),
-    "snowball": Move("Snowball", "Throw a snowball at a target", MoveCategory.PHYSICAL, 20, 90, 30, restricted_to=lambda animal: animal.has_arms),
+    "snowball": Move("Snowball", "Throw a snowball at a target", MoveCategory.PHYSICAL, 20, 90, 30),
     "display": Move("Display", "Show off your fur, or feathers, whatever you have", MoveCategory.STATUS, 0, 100, 30),
     "roar": Move("Roar", "Roar at a target", MoveCategory.STATUS, 0, 100, 20),
     "howl": Move("Howl", "Howl to alert your teammates", MoveCategory.STATUS, 0, 100, 40),
     "claw_swipe": Move("Claw Swipe", "Swipe with your claws", MoveCategory.PHYSICAL, 40, 100, 35),
-    "stomp": Move("Stomp", "Stomp on a target", MoveCategory.PHYSICAL, 65, 100, 20, restricted_to=lambda animal: animal.weight.value >= Rank.S.value)
+    "stomp": Move("Stomp", "Stomp on a target", MoveCategory.PHYSICAL, 65, 100, 20),
+    "skydive": Move("Skydive", "Skydive to a target", MoveCategory.PHYSICAL, 80, 95, 15),
+    "peck": Move("Peck", "Peck a target", MoveCategory.PHYSICAL, 35, 100, 35),
+    "talon_strike": Move("Talon Strike", "Strike with your talons", MoveCategory.PHYSICAL, 70, 100, 20),
+    "wing_attack": Move("Wing Attack", "Attack with your wings", MoveCategory.PHYSICAL, 60, 100, 35),
+    "chomp": Move("Chomp", "Chomp on a target", MoveCategory.PHYSICAL, 80, 100, 15),
+    "tear_down": Move("Tear Down", "Tear down a target", MoveCategory.PHYSICAL, 120, 100, 10),
+    "flop_attack": Move("Flop Attack", "Flop at a target", MoveCategory.PHYSICAL, 65, 85, 20),
+    "flop_around": Move("Flop Around", "Flop around", MoveCategory.STATUS, 0, 100, 20),
+    "whirlwind": Move("Whirlwind", "Gust down a target", MoveCategory.PHYSICAL, 150, 100, 5),
+    "hiss": Move("Hiss", "Hiss at a target", MoveCategory.STATUS, 0, 100, 40),
+    "spit": Move("Spit", "Spit at a target", MoveCategory.PHYSICAL, 50, 100, 20),
+    "nip": Move("Nip", "Nip a target", MoveCategory.PHYSICAL, 25, 100, 30),
+    "claw_slash": Move("Claw Slash", "Slash with your claws", MoveCategory.PHYSICAL, 80, 100, 35),
+    "tail_swipe": Move("Tail Swipe", "Swipe with your tail", MoveCategory.PHYSICAL, 40, 100, 35),
+    "confuse_showoff": Move("Confuse Showoff", "Confuse a target", MoveCategory.SPECIAL, 10, 100, 20, MoveEffect(MoveEffectType.CONFUSE, 100, 2, 0.5)),
+    "venomous_spit": Move("Venomous Spit", "Spit venom at a target", MoveCategory.PHYSICAL, 50, 100, 20, MoveEffect(MoveEffectType.POISON, 100, 2, 0.5)),
+    "venomous_bite": Move("Venomous Bite", "Bite a target with venom", MoveCategory.PHYSICAL, 60, 100, 25, MoveEffect(MoveEffectType.POISON, 100, 2, 0.5)),
+    "pierced_gaze": Move("Pierced Gaze", "Gaze at a target", MoveCategory.SPECIAL, 80, 100, 20, MoveEffect(MoveEffectType.STUN, 100, 2, 0.5)),
+    "echolocation": Move("Echolocation", "Use echolocation to find a target", MoveCategory.SPECIAL, 0, 100, 20, MoveEffect(MoveEffectType.DETECTED, 100, 2, 0.5)),
 }
