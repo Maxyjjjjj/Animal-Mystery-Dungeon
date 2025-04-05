@@ -1274,5 +1274,18 @@ animals = {
             weight=Rank.C,
             has_arms=False,
             locomotion=Locomotion.SEMIAQUATIC
+        ),
+        "Quokka": Animal(
+            name="Quokka",
+            species="Setonix brachyurus",
+            diet=Diet.HERBIVORE,
+            intelligence=Rank.B,
+            size=Size.S,
+            has_wings=False,
+            speed=Rank.B,
+            damage=Rank.B,
+            weight=Rank.C,
+            has_arms=False,
+            locomotion=Locomotion.TERRESTRIAL
         )
     }
