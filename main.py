@@ -203,14 +203,17 @@ class TerrainType(Enum):
     MUD = 4
     ICE = 5
     GRASS = 6
+    ROCK = 7
+    SAND = 8
+    SNOW = 9
+    SWAMP = 10
+    AIR = 11
 
 class Terrain:
     def __init__(self, type, movement_cost, damage=0):
         self.type = type
         self.movement_cost = movement_cost
         self.damage = damage  # Damage per turn if standing on this terrain
-
-
 
 class Diet(Enum):
     CARNIVORE = auto()
@@ -349,6 +352,48 @@ class Animal:
                 
                 self.x = new_x
                 self.y = new_y
+    
+    def fly(self, dx, dy, dungeon):
+        """
+        Move the animal in the air, checking for air collisions
+        Incorporate speed into movement
+        """
+        if not self.has_wings or self.name in ["Ostrich", "Penguin", "Emu", "Dodo", "Cassowary", "Rhea"]:
+            return  
+                  
+        new_x = self.x + dx
+        new_y = self.y + dy
+        # Check if the new position is within the dungeon and not a wall
+        if (0 <= new_x < dungeon.width and
+            0 <= new_y < dungeon.height and
+            dungeon.grid[new_y][new_x] == 0):
+            self.x = new_x
+            self.y = new_y
+        # Apply speed to movement
+        self.x += dx * self.base_speed
+        self.y += dy * self.base_speed
+        # Ignore water-specific movement for flying animals
+        if TerrainType.WATER in dungeon.terrain_types:
+            return
+
+    def swim(self, dx, dy, dungeon):
+        """
+        Move the animal in water, checking for water collisions
+        Incorporate speed into movement
+        """
+        new_x = self.x + dx
+        new_y = self.y + dy
+
+    def attack(self, target):
+        """
+        Perform an attack on the target animal
+        """
+        # Example attack logic
+        damage = self.damage
+        target.health -= damage
+        # Check if the target is defeated
+        if target.health <= 0:
+            print(f"{self.name} defeated {target.name}!")
 def create_predefined_animals():
     from animals import animals
     return animals
@@ -366,7 +411,7 @@ class WaterMoveSpeed(Enum):
     Water-specific speed multipliers for different locomotion types
     """
     # Water-specific multipliers
-    TERRESTRIAL = 0.5  # Slower in water for terrestrial animals
+    TERRESTRIAL = 0.5  # Slower in water for terrestrial animals, unless they can fly
     SEMIAQUATIC = 1.0  # Average speed in water for semiaquatic animals
     AQUATIC = 1.5      # Faster in water for aquatic animals
 
@@ -375,7 +420,7 @@ class ConfinedToWater(Enum):
     Water-specific behavior for animals
     """
     # Water-specific behavior
-    TERRESTRIAL = False  # Can move on land, yet is slower in water
+    TERRESTRIAL = False  # Can move on land, yet is slower in water, unless it can fly
     SEMIAQUATIC = False   # Can move in water and land with the same speed
     AQUATIC = True        # Can move in water only, not on land
 

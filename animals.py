@@ -1703,5 +1703,83 @@ animals = {
         weight=Rank.C,  # Larger than insects
         has_arms=True,  # Rats have functional front limbs
         locomotion=Locomotion.TERRESTRIAL
+    ),
+    "Kiwi": Animal(
+        name="Kiwi",
+        species="Apteryx oweni",
+        diet=Diet.OMNIVORE,  # Kiwis eat insects, worms, and some plant matter
+        intelligence=Rank.C,  # Kiwis are intelligent birds
+        size=Size.S,
+        has_wings=False,  # Kiwis have vestigial wings and cannot fly
+        speed=Rank.C,  # Kiwis are relatively slow-moving birds
+        damage=Rank.D,
+        weight=Rank.C,  # Kiwis are relatively heavy for their size
+        has_arms=False,
+        locomotion=Locomotion.TERRESTRIAL
+    ),
+    "Cassowary": Animal(
+        name="Cassowary",
+        species="Casuarius casuarius",
+        diet=Diet.HERBIVORE,
+        intelligence=Rank.D,
+        size=Size.L,
+        has_wings=True,
+        speed=Rank.C,
+        damage=Rank.D,
+        weight=Rank.B,
+        has_arms=False,
+        locomotion=Locomotion.TERRESTRIAL
+    ),
+    "Chameleon": Animal(
+        name="Chameleon",
+        species="Chamaeleo calyptratus",
+        diet=Diet.CARNIVORE,
+        intelligence=Rank.D,
+        size=Size.XS,
+        has_wings=False,
+        speed=Rank.C,
+        damage=Rank.D,
+        weight=Rank.D,
+        has_arms=False,
+        locomotion=Locomotion.TERRESTRIAL
+    ),
+    "Rhea": Animal(
+        name="Rhea",
+        species="Rhea americana",
+        diet=Diet.HERBIVORE,
+        intelligence=Rank.D,
+        size=Size.L,
+        has_wings=True,
+        speed=Rank.B,
+        damage=Rank.D,
+        weight=Rank.B,
+        has_arms=False,
+        locomotion=Locomotion.TERRESTRIAL
+    ),
+    "Quetzal": Animal(
+        name="Quetzal",
+        species="Pharomachrus mocinno",
+        diet=Diet.HERBIVORE,
+        intelligence=Rank.D,
+        size=Size.S,
+        has_wings=True,
+        speed=Rank.B,
+        damage=Rank.D,
+        weight=Rank.D,
+        has_arms=False,
+        locomotion=Locomotion.TERRESTRIAL
+    ),
+    "Quetzalcoatlus": Animal(
+        name="Quetzalcoatlus",
+        species="Quetzalcoatlus northropi",
+        diet=Diet.CARNIVORE,
+        intelligence=Rank.D,
+        size=Size.XL,
+        has_wings=True,
+        speed=Rank.A,
+        damage=Rank.D,
+        weight=Rank.B,
+        has_arms=False,
+        locomotion=Locomotion.TERRESTRIAL
     )
 }
