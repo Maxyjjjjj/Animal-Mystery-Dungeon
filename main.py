@@ -218,6 +218,12 @@ class Diet(Enum):
     OMNIVORE = auto()
     SPECIALIST = auto()
 
+class SpecialistType(Enum):
+    MOLLUSKIVORE = auto()
+    INSECTIVORE = auto()
+    NECTARIVORE = auto()
+    DETRITIVORE = auto()
+
 class Rank(Enum):
     F = 1
     E = 2
