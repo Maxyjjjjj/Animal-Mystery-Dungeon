@@ -1443,5 +1443,174 @@ animals = {
             weight=Rank.D,
             has_arms=False,
             locomotion=Locomotion.AQUATIC
+        ),
+        "Yak": Animal(
+            name="Yak",
+            species="Bos grunniens",
+            diet=Diet.HERBIVORE,
+            intelligence=Rank.B,
+            size=Size.XL,
+            has_wings=False,
+            speed=Rank.C,
+            damage=Rank.A, # Based on the incident where a yak charged at me, but I came away intact
+            weight=Rank.A,
+            has_arms=False,
+            locomotion=Locomotion.TERRESTRIAL
+        ),
+        "Llama": Animal(
+            name="Llama",
+            species="Lama glama",
+            diet=Diet.HERBIVORE,
+            intelligence=Rank.B,
+            size=Size.L,
+            has_wings=False,
+            speed=Rank.B,
+            damage=Rank.C, # SPIT CANNON LOL
+            weight=Rank.B,
+            has_arms=False,
+            locomotion=Locomotion.TERRESTRIAL
+        ),
+    "Horse": Animal(
+            name="Horse",
+            species="Equus caballus",
+            diet=Diet.HERBIVORE,
+            intelligence=Rank.B,
+            size=Size.L,
+            has_wings=False,
+            speed=Rank.B,
+            damage=Rank.C,
+            weight=Rank.A,
+            has_arms=False,
+            locomotion=Locomotion.TERRESTRIAL
+        ),
+        "Cow": Animal(
+            name="Cow",
+            species="Bos taurus",
+            diet=Diet.HERBIVORE,
+            intelligence=Rank.B,
+            size=Size.L,
+            has_wings=False,
+            speed=Rank.B,
+            damage=Rank.A, # CAN KICK YOU
+            weight=Rank.A,
+            has_arms=False,
+            locomotion=Locomotion.TERRESTRIAL
+        ),
+        "Dilophosaurus": Animal(
+            name="Dilophosaurus",
+            species="Dilophosaurus wetherilli",
+            diet=Diet.CARNIVORE,
+            intelligence=Rank.A,
+            size=Size.L,
+            has_wings=False,
+            speed=Rank.A,
+            damage=Rank.A, # Never fight a dinosaur. You'll get jurasskicked
+            weight=Rank.B,
+            has_arms=True,
+            locomotion=Locomotion.TERRESTRIAL
+        ),
+        "Spinosaurus": Animal(
+            name="Spinosaurus",
+            species="Spinosaurus aegyptiacus",
+            diet=Diet.CARNIVORE,
+            intelligence=Rank.B,
+            size=Size.XL,
+            has_wings=False,
+            speed=Rank.B,
+            damage=Rank.S,
+            weight=Rank.S,
+            has_arms=True,
+            locomotion=Locomotion.SEMIAQUATIC
+        ),
+        "Tyrannosaurus": Animal(
+            name="Tyrannosaurus",
+            species="Tyrannosaurus rex",
+            diet=Diet.CARNIVORE,
+            intelligence=Rank.A,
+            size=Size.XL,
+            has_wings=False,
+            speed=Rank.A,
+            damage=Rank.S,
+            weight=Rank.S,
+            has_arms=True, # Hilariously small but present arms
+            locomotion=Locomotion.TERRESTRIAL
+        ),
+        "Newt": Animal(
+            name="Newt",
+            species="Triturus cristatus",
+            diet=Diet.CARNIVORE,
+            intelligence=Rank.D,
+            size=Size.XS,
+            has_wings=False,
+            speed=Rank.B,
+            damage=Rank.D,
+            weight=Rank.D,
+            has_arms=False,
+            locomotion=Locomotion.SEMIAQUATIC
+        ),
+        "Trout": Animal(
+            name="Trout",
+            species="Salmo trutta",
+            diet=Diet.CARNIVORE,
+            intelligence=Rank.D,
+            size=Size.S,
+            has_wings=False,
+            speed=Rank.A, # Trout are fast swimmers
+            damage=Rank.D,
+            weight=Rank.D,
+            has_arms=False,
+            locomotion=Locomotion.AQUATIC
+        ),
+        "Ant": Animal(
+            name="Ant",
+            species="Formica rufa",
+            diet=Diet.OMNIVORE, # Ants eat both plant and animal matter
+            intelligence=Rank.C, # Ants show complex social behaviors
+            size=Size.XXS,
+            has_wings=False, # Worker ants don't have wings
+            speed=Rank.B,
+            damage=Rank.D,
+            weight=Rank.D,
+            has_arms=False,
+            locomotion=Locomotion.TERRESTRIAL
+        ),
+        "Bee": Animal(
+            name="Bee",
+            species="Apis mellifera",
+            diet=Diet.HERBIVORE,
+            intelligence=Rank.C, # Bees show complex social behaviors
+            size=Size.XXS,
+            has_wings=True,
+            speed=Rank.A, # Bees are fast flyers
+            damage=Rank.C, # Bee stings are painful
+            weight=Rank.D,
+            has_arms=False,
+            locomotion=Locomotion.TERRESTRIAL
+        ),
+        "Tarantula": Animal(
+            name="Tarantula",
+            species="Brachypelma smithi",
+            diet=Diet.CARNIVORE,
+            intelligence=Rank.D,
+            size=Size.XS,
+            has_wings=False,
+            speed=Rank.C,
+            damage=Rank.C, # Tarantula bites can be painful
+            weight=Rank.D,
+            has_arms=False,
+            locomotion=Locomotion.TERRESTRIAL
+        ),
+        "Mantis": Animal(
+            name="Mantis",
+            species="Mantis religiosa",
+            diet=Diet.CARNIVORE,
+            intelligence=Rank.D,
+            size=Size.XS,
+            has_wings=True,
+            speed=Rank.A, # Mantises are quick strikers
+            damage=Rank.C, # Mantises are effective predators
+            weight=Rank.D,
+            has_arms=True, # Mantises have legs and raptorial arms
+            locomotion=Locomotion.TERRESTRIAL
         )
     }
