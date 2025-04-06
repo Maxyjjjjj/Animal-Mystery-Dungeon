@@ -1657,12 +1657,51 @@ animals = {
         species="Libellula depressa",
         diet=Diet.CARNIVORE,
         intelligence=Rank.D,
-        size=Size.XXS,  # Dragonflies are typically very small
+        size=Size.XXS,
         has_wings=True,
-        speed=Rank.S,  # Dragonflies are among the fastest flying insects
-        damage=Rank.D,  # Dragonflies don't cause significant damage to humans
+        speed=Rank.S,
+        damage=Rank.D,
         weight=Rank.D,
         has_arms=False,
+        locomotion=Locomotion.TERRESTRIAL
+    ),
+    "Cockroach": Animal(
+        name="Cockroach",
+        species="Periplaneta americana",
+        diet=Diet.OMNIVORE,
+        intelligence=Rank.D,
+        size=Size.XS,
+        has_wings=True,
+        speed=Rank.A,
+        damage=Rank.D,
+        weight=Rank.D,
+        has_arms=False,
+        locomotion=Locomotion.TERRESTRIAL
+    ),
+    "Spider": Animal(
+        name="Spider",
+        species="Araneus diadematus",
+        diet=Diet.CARNIVORE,
+        intelligence=Rank.C,  # Spiders show complex hunting behaviors
+        size=Size.XS,
+        has_wings=False,  # Spiders don't have wings
+        speed=Rank.B,  # Spiders are quite fast for their size
+        damage=Rank.C,  # Venomous bite
+        weight=Rank.D,
+        has_arms=True,  # Spiders have pedipalps that function like arms
+        locomotion=Locomotion.TERRESTRIAL
+    ),
+    "Rat": Animal(
+        name="Rat",
+        species="Rattus norvegicus",
+        diet=Diet.OMNIVORE,
+        intelligence=Rank.B,  # Rats are highly intelligent, can learn complex tasks
+        size=Size.XS,
+        has_wings=False,
+        speed=Rank.A,
+        damage=Rank.C,  # Strong bite force
+        weight=Rank.C,  # Larger than insects
+        has_arms=True,  # Rats have functional front limbs
         locomotion=Locomotion.TERRESTRIAL
     )
 }
