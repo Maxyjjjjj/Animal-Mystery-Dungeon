@@ -1520,7 +1520,7 @@ animals = {
             damage=Rank.S,
             weight=Rank.S,
             has_arms=True,
-            locomotion=Locomotion.SEMIAQUATIC
+            locomotion=Locomotion.SEMIAQUATIC # Crocoducc
         ),
         "Tyrannosaurus": Animal(
             name="Tyrannosaurus",
